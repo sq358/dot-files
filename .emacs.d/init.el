@@ -86,6 +86,29 @@
       (make-directory dir t))))
 
 ;; Enable recent files
+
+;; Desktop save mode - restore buffers and windows on restart
+(desktop-save-mode 1)
+(setq desktop-dirname user-emacs-directory
+      desktop-base-file-name "desktop"
+      desktop-base-lock-name "desktop.lock"
+      desktop-path (list desktop-dirname)
+      desktop-save t
+      desktop-files-not-to-save "^$" ;; Save all files
+      desktop-load-locked-desktop nil
+      desktop-auto-save-timeout 600) ;; Auto-save every 10 minutes
+
+;; Save additional session information
+(setq desktop-globals-to-save
+      (append '(desktop-missing-file-warning
+                   tags-file-name
+                   tags-table-list
+                   search-ring
+                   regexp-search-ring
+                   register-alist
+                   file-name-history)
+              desktop-globals-to-save))
+
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
 
@@ -119,7 +142,8 @@
 ;; Org-mode configuration
 (use-package org
   :config
-  (setq org-startup-indented t
+  (setq org-startup-indented nil        ; Disable indentation
+        org-hide-leading-stars nil    ; Show all stars
         org-pretty-entities t
         org-hide-emphasis-markers t
         org-startup-with-inline-images t
