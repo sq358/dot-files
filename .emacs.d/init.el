@@ -53,6 +53,9 @@
 ;; Show matching parentheses
 (show-paren-mode 1)
 
+;; Enable visual line mode globally
+(global-visual-line-mode 1)
+
 ;; Basic editor settings
 (setq-default
  indent-tabs-mode nil        ; Use spaces instead of tabs
@@ -201,6 +204,15 @@
   ;; Reduce flycheck warnings
   (setq flycheck-emacs-lisp-load-path 'inherit)
   (setq flycheck-check-syntax-automatically '(save mode-enabled)))
+
+;; Markdown mode
+(use-package markdown-mode
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown")
+  :config
+  (setq markdown-fontify-code-blocks-natively t))
 
 ;; Magit for Git integration
 (use-package magit
