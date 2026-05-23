@@ -1,0 +1,16 @@
+# Emacs session
+desktop
+desktop.lock
+
+# Package directory
+elpa/
+
+# Auto-generated files
+auto-saves/
+auto-save-list/
+backups/
+undo-tree-hist/
+recentf
+projectile-bookmarks.eld
+.lsp-session-v1
+tramp
